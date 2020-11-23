@@ -70,4 +70,5 @@ build-and-push:docker-image:
     - .retry
   variables:
     CONTEXT: "${CI_PROJECT_DIR}/Dockerfiles"
-    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfiles/Dockerfile"
+    # yamllint disable-line rule:line-length
+    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfiles/pyenv-python-3.7.9-3.8.6-3.9.0-poetry-hadolint-go-1.15.5"
