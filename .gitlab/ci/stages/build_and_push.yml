@@ -1,8 +1,6 @@
 ---
 
 variables:
-  # yamllint disable-line rule:line-length
-  CI_IMAGE_ALT: "${CI_REGISTRY_IMAGE}:${DOCKERFILE_FILENAME}_${CI_COMMIT_REF_SLUG}"
   DOCKER_TAG: "${DOCKERFILE_FILENAME}_${CI_COMMIT_SHORT_SHA}"
 
 # Build job ------------------------
@@ -36,6 +34,8 @@ variables:
       }
     REGISTRY_CONFIG_FILE: "${CI_PROJECT_DIR}/registry-config.yml"
     CURL_CA_BUNDLE: "/makisu-internal/certs/cacerts.pem"
+    # yamllint disable-line rule:line-length
+    CI_IMAGE_ALT: "${CI_REGISTRY_IMAGE}:${DOCKERFILE_FILENAME}_${CI_COMMIT_REF_SLUG}"
   before_script:
     - |
       echo "http://dl-4.alpinelinux.org/alpine/edge/community" \
