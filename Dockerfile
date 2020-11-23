@@ -24,23 +24,6 @@ RUN apt-get update && \
         make=4.3-4 && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install executable for pre-commit hook (`hadolint`)
-RUN HADOLINT_GIT_REPO="https://github.com/hadolint/hadolint" && \
-    HADOLINT_BINARIES="${HADOLINT_GIT_REPO}/releases/download/v1.18.0" && \
-    curl -sSL "${HADOLINT_BINARIES}/hadolint-Linux-x86_64" -o /bin/hadolint && \
-    chmod +x /bin/hadolint
-
-# Install Go for pre-commit hook (`shfmt`)
-ENV GO111MODULE=on \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64 \
-    PATH="${PATH}:/usr/local/go/bin"
-# hadolint ignore=DL4006,SC2039
-RUN GO_TAR=go1.15.linux-amd64.tar.gz && \
-    set -o pipefail && \
-    curl -sSL "https://golang.org/dl/${GO_TAR}" | tar -C /usr/local -xzvf -
-
 # Install `pyenv` for Python version management
 ENV PYENV_ROOT="${HOME}/.pyenv"
 ENV PATH="${PYENV_ROOT}/bin:${PATH}"
@@ -114,6 +97,23 @@ RUN . "${ENV}" && \
     poetry --version && \
     poetry config virtualenvs.in-project true && \
     poetry config --list
+
+# Install executable for pre-commit hook (`hadolint`)
+RUN HADOLINT_GIT_REPO="https://github.com/hadolint/hadolint" && \
+    HADOLINT_BINARIES="${HADOLINT_GIT_REPO}/releases/download/v1.18.0" && \
+    curl -sSL "${HADOLINT_BINARIES}/hadolint-Linux-x86_64" -o /bin/hadolint && \
+    chmod +x /bin/hadolint
+
+# Install Go for pre-commit hook (`shfmt`)
+ENV GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64 \
+    PATH="${PATH}:/usr/local/go/bin"
+# hadolint ignore=DL4006,SC2039
+RUN GO_TAR=go1.15.linux-amd64.tar.gz && \
+    set -o pipefail && \
+    curl -sSL "https://golang.org/dl/${GO_TAR}" | tar -C /usr/local -xzvf -
 
 WORKDIR /app
 ENTRYPOINT ["/bin/bash"]
