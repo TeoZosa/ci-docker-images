@@ -1,0 +1,73 @@
+---
+
+variables:
+  CI_IMAGE_ALT: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_REF_SLUG}"
+  DOCKER_TAG: "${CI_COMMIT_SHORT_SHA}"
+
+# Build job ------------------------
+
+.makisu-builder:
+  image:
+    # yamllint disable-line rule:line-length
+    name: gcr.io/uber-container-tools/makisu-alpine:v0.4.1@sha256:0fc8ba49b6a219e68009eac4e9ca4d4120b04cf3b18eb9d499bda0beb387a65d
+    entrypoint: [""]
+  variables:
+    CI_REGISTRY: "index.docker.io"
+    REGISTRY_CONFIG: |
+      {
+        "${CI_REGISTRY}": {
+          ".*": {
+            "concurrency": 64,
+            "push_chunk": -1,
+            "security": {
+              "tls": {
+                "client": {
+                  "disabled": false
+                }
+              },
+              "basic": {
+                "username": "${DOCKER_NAMESPACE}",
+                "password": "${DOCKER_PASSWORD}"
+              }
+            }
+          }
+        }
+      }
+    REGISTRY_CONFIG_FILE: "${CI_PROJECT_DIR}/registry-config.yml"
+    CURL_CA_BUNDLE: "/makisu-internal/certs/cacerts.pem"
+  before_script:
+    - |
+      echo "http://dl-4.alpinelinux.org/alpine/edge/community" \
+      >> /etc/apk/repositories
+    - apk update
+    - apk add yq --no-cache
+    - apk add jq
+    - |
+      echo "${REGISTRY_CONFIG}" \
+      | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
+  script:
+    - |
+      /makisu-internal/makisu \
+      --log-level=debug \
+      --log-fmt=console \
+      build \
+      --replica="${CI_REGISTRY}/${CI_IMAGE_ALT}" \
+      --push=$CI_REGISTRY \
+      --modifyfs \
+      -t="${CI_IMAGE}" \
+      --registry-config="${REGISTRY_CONFIG_FILE}" \
+      -f="${DOCKERFILE}" \
+      --build-arg=DOCKER_TAG="${DOCKER_TAG}" \
+      --commit=implicit \
+      --storage=/makisu-storage \
+      --redis-cache-addr=redis-svc:6379  \
+      "${CONTEXT}"
+
+build:docker-image:
+  stage: build
+  extends:
+    - .makisu-builder
+    - .retry
+  variables:
+    CONTEXT: "${CI_PROJECT_DIR}"
+    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfile"

@@ -1,0 +1,23 @@
+---
+
+.retry:
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+.ci-image-pull-boilerplate:
+  extends:
+    - .retry
+  image: "${CI_IMAGE}"
+
+.ci-image-based-job-boilerplate:
+  extends:
+    - .ci-image-pull-boilerplate
+  needs: ["pull:docker-image"]
+  before_script:
+    - pip install tox
+
+variables:
+  CI_IMAGE: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA}"
