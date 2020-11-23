@@ -63,7 +63,7 @@ variables:
       --redis-cache-addr=redis-svc:6379  \
       "${CONTEXT}"
 
-build:docker-image:
+build-and-push:docker-image:
   stage: Build & Push
   extends:
     - .makisu-builder
