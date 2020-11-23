@@ -60,6 +60,7 @@
         --replica="${CI_REGISTRY}/${CI_IMAGE_ALT}" \
         --push=$CI_REGISTRY \
         --modifyfs \
+        --preserve-root \
         -t="${CI_IMAGE}" \
         --registry-config="${REGISTRY_CONFIG_FILE}" \
         -f="${DOCKERFILE}" \
