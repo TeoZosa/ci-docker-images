@@ -2,7 +2,7 @@
 
 variables:
   # yamllint disable-line rule:line-length
-  CI_IMAGE_ALT: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${DOCKERFILE_FILENAME}_${CI_COMMIT_REF_SLUG}"
+  CI_IMAGE_ALT: "${CI_REGISTRY_IMAGE}:${DOCKERFILE_FILENAME}_${CI_COMMIT_REF_SLUG}"
   DOCKER_TAG: "${DOCKERFILE_FILENAME}_${CI_COMMIT_SHORT_SHA}"
 
 # Build job ------------------------
