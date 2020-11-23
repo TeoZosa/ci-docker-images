@@ -69,5 +69,5 @@ build-and-push:docker-image:
     - .makisu-builder
     - .retry
   variables:
-    CONTEXT: "${CI_PROJECT_DIR}"
-    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfile"
+    CONTEXT: "${CI_PROJECT_DIR}/Dockerfiles"
+    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfiles/Dockerfile"
