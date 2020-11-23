@@ -57,7 +57,7 @@ variables:
       -t="${CI_IMAGE}" \
       --registry-config="${REGISTRY_CONFIG_FILE}" \
       -f="${DOCKERFILE}" \
-      --build-arg=DOCKER_TAG="${DOCKER_TAG}" \
+      --build-arg=DOCKER_TAG="${TAG}" \
       --commit=implicit \
       --storage=/makisu-storage \
       --redis-cache-addr=redis-svc:6379  \
