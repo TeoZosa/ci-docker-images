@@ -58,7 +58,7 @@
       --modifyfs \
       -t="${SUPERSET_CI_IMAGE}" \
       --registry-config="${REGISTRY_CONFIG_FILE}" \
-      -f="${DOCKERFILE}" \
+      -f="${CONTEXT}/${SUPERSET_DOCKERFILE_FILENAME}" \
       --build-arg=DOCKER_TAG="${TAG}" \
       --commit=implicit \
       --storage=/makisu-storage \
@@ -72,4 +72,3 @@ build-and-push:docker-image:
     - .retry
   variables:
     CONTEXT: "${CI_PROJECT_DIR}/Dockerfiles"
-    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfiles/${SUPERSET_DOCKERFILE_FILENAME}"
