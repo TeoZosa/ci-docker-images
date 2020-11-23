@@ -46,6 +46,9 @@
       TAG="${DOCKERFILE_FILENAME}${TAG_SUFFIX}" && \
       REPLICA_TAG="${DOCKERFILE_FILENAME}${REPLICA_TAG_SUFFIX}" && \
       CI_IMAGE_ALT="${CI_REGISTRY_IMAGE}:${REPLICA_TAG}" && \
+      echo "Image tags for Dockerfile \`${DOCKERFILE_FILENAME}\`" && \
+      echo "TAG=\`${TAG}\`" && \
+      echo "REPLICA_TAG=\`${REPLICA_TAG}"\` && \
       /makisu-internal/makisu \
       --log-level=debug \
       --log-fmt=console \
