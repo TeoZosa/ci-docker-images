@@ -31,8 +31,6 @@
       }
     REGISTRY_CONFIG_FILE: "${CI_PROJECT_DIR}/registry-config.yml"
     CURL_CA_BUNDLE: "/makisu-internal/certs/cacerts.pem"
-    # yamllint disable-line rule:line-length
-    CI_IMAGE_ALT: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${DOCKERFILE_FILENAME}_${CI_COMMIT_REF_SLUG}"
   before_script:
     - |
       echo "http://dl-4.alpinelinux.org/alpine/edge/community" \
@@ -45,6 +43,7 @@
       | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
   script:
     - |
+      CI_IMAGE_ALT="${CI_REGISTRY_IMAGE}:${REPLICA_TAG}" && \
       /makisu-internal/makisu \
       --log-level=debug \
       --log-fmt=console \
