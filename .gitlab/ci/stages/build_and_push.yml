@@ -43,6 +43,8 @@
       | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
   script:
     - |
+      TAG="${DOCKERFILE_FILENAME}${TAG_SUFFIX}" && \
+      REPLICA_TAG="${DOCKERFILE_FILENAME}${REPLICA_TAG_SUFFIX}" && \
       CI_IMAGE_ALT="${CI_REGISTRY_IMAGE}:${REPLICA_TAG}" && \
       /makisu-internal/makisu \
       --log-level=debug \
