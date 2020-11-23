@@ -2,7 +2,7 @@
 
 FROM debian:bullseye-slim@sha256:83e867b8399a53fc5f730a3ac9c8a8bc9cf19f7531ccf96d9a5c1b14f021e433
 
-LABEL maintainer="teo@sonosim.com"
+LABEL maintainer="Teofilo Zosa <teo@sonosim.com>"
 ENV LANG C.UTF-8
 
 # Configure `bash` as the default shell
