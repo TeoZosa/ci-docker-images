@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "Docker Images"
+version = "0.1.0"
+description = "SonoSim Docker Base Container Images for CorSAIR Projects and CI Jobs"
+authors = ["Teo Zosa <teo@sonosim.com>"]
+readme = "README.md"
+repository = "http://gitlab.sonosim.local/CorSAIR/ci-cd/docker-images"
+homepage = "http://gitlab.sonosim.local/CorSAIR/ci-cd/docker-images"
+keywords = ["AI", "CorSAIR", "CI", "CD"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+tox = "^3.20"
+# Linting & formatting orchestrator
+pre-commit = "^2.7.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
