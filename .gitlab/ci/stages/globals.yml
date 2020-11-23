@@ -20,4 +20,6 @@
     - pip install tox
 
 variables:
+  # yamllint disable-line rule:line-length
+  DOCKERFILE_FILENAME: "pyenv-python-3.7.9-3.8.6-3.9.0-poetry-hadolint-go-1.15.5"
   CI_IMAGE: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${CI_COMMIT_SHORT_SHA}"
