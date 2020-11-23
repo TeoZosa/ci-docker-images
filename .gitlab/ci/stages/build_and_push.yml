@@ -64,7 +64,7 @@ variables:
       "${CONTEXT}"
 
 build:docker-image:
-  stage: build
+  stage: Build & Push
   extends:
     - .makisu-builder
     - .retry

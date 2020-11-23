@@ -2,7 +2,7 @@
 
 include:
   - '/.gitlab/ci/stages/globals.yml'
-  - '/.gitlab/ci/stages/build.yml'
+  - '/.gitlab/ci/stages/build_and_push.yml'
   - '/.gitlab/ci/stages/pull.yml'
   - '/.gitlab/ci/stages/sast.yml'
   - '/.gitlab/ci/stages/code_quality.yml'
@@ -15,7 +15,7 @@ cache:
     - .venv
 
 stages:
-  - build
+  - Build & Push
   - pull
   - SAST
   - Code Quality
