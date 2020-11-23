@@ -43,10 +43,10 @@
       | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
   script:
     - |
-      TAG="${DOCKERFILE_FILENAME}${TAG_SUFFIX}" && \
-      REPLICA_TAG="${DOCKERFILE_FILENAME}${REPLICA_TAG_SUFFIX}" && \
+      TAG="${SUPERSET_DOCKERFILE_FILENAME}${TAG_SUFFIX}" && \
+      REPLICA_TAG="${SUPERSET_DOCKERFILE_FILENAME}${REPLICA_TAG_SUFFIX}" && \
       CI_IMAGE_ALT="${CI_REGISTRY_IMAGE}:${REPLICA_TAG}" && \
-      echo "Image tags for Dockerfile \`${DOCKERFILE_FILENAME}\`" && \
+      echo "Image tags for Dockerfile \`${SUPERSET_DOCKERFILE_FILENAME}\`" && \
       echo "TAG=\`${TAG}\`" && \
       echo "REPLICA_TAG=\`${REPLICA_TAG}"\` && \
       /makisu-internal/makisu \
@@ -56,7 +56,7 @@
       --replica="${CI_REGISTRY}/${CI_IMAGE_ALT}" \
       --push=$CI_REGISTRY \
       --modifyfs \
-      -t="${CI_IMAGE}" \
+      -t="${SUPERSET_CI_IMAGE}" \
       --registry-config="${REGISTRY_CONFIG_FILE}" \
       -f="${DOCKERFILE}" \
       --build-arg=DOCKER_TAG="${TAG}" \
@@ -72,4 +72,4 @@ build-and-push:docker-image:
     - .retry
   variables:
     CONTEXT: "${CI_PROJECT_DIR}/Dockerfiles"
-    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfiles/${DOCKERFILE_FILENAME}"
+    DOCKERFILE: "${CI_PROJECT_DIR}/Dockerfiles/${SUPERSET_DOCKERFILE_FILENAME}"

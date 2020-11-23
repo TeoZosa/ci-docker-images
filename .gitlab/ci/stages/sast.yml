@@ -33,7 +33,7 @@ clair-cve-scan-container:
     # yamllint disable-line rule:line-length
     - docker:stable-dind@sha256:331dafcf4b675f6ace9212a113d973a9cf56ea55c33415e1853e6ea1b474e0b6
   before_script:
-    - docker pull "${CI_IMAGE}"
+    - docker pull "${SUPERSET_CI_IMAGE}"
   script:
     - >
       if [ -z "${DOCKER_HOST}" -a "${KUBERNETES_PORT}" ]; then
@@ -61,7 +61,7 @@ clair-cve-scan-container:
     - >
       ./clair-scanner -c "http://${DOCKER_SERVICE}:6060" --ip $(hostname -i) -r
       gl-container-scanning-report.json -l clair.log -w clair-whitelist.yml
-      "${CI_IMAGE}" || true
+      "${SUPERSET_CI_IMAGE}" || true
   artifacts:
     reports:
       container_scanning: gl-container-scanning-report.json
