@@ -22,8 +22,8 @@
 variables:
   CI_REGISTRY_IMAGE: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}"
   # yamllint disable-line rule:line-length
-  SUPERSET_DOCKERFILE_FILENAME: "pyenv-python-3.7.9-3.8.6-3.9.0-poetry-hadolint-go-1.15.5"
+  CI_DOCKERFILE_FILENAME: "pyenv-python-3.7.9-3.8.6-3.9.0-poetry-hadolint-go-1.15.5"
   # yamllint disable-line rule:line-length
-  CI_IMAGE: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${SUPERSET_DOCKERFILE_FILENAME}_${CI_COMMIT_SHORT_SHA}"
+  CI_IMAGE: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${CI_DOCKERFILE_FILENAME}_${CI_COMMIT_SHORT_SHA}"
   TAG_SUFFIX: "_${CI_COMMIT_SHORT_SHA}"
   REPLICA_TAG_SUFFIX: "_${CI_COMMIT_REF_SLUG}"
