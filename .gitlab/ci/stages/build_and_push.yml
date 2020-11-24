@@ -64,11 +64,11 @@
     - apk update
     - apk add yq --no-cache
     - apk add jq
-    - apk add coreutils # For updated `sort` binary
     - |
       echo "${REGISTRY_CONFIG}" \
       | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
   script:
+    - apk add coreutils # For updated `sort` binary
     - for DOCKERFILE in $(ls -d "${CONTEXT}"/* | sort -V); do
     - *makisu-build-script
     - done
