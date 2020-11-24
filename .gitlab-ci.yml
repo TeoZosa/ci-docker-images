@@ -5,7 +5,10 @@ include:
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
     file: '/.gitlab/ci/stages/globals.yml'
-  - '/.gitlab/ci/stages/build_and_push.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    # yamllint disable-line rule:line-length
+    ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
+    file: '/.gitlab/ci/stages/build_and_push_multi.yml'
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
