@@ -12,7 +12,7 @@ include:
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
-    file: '/.gitlab/ci/stages/pull.yml'
+    file: '/.gitlab/ci/stages/pull_docker_image.yml'
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
