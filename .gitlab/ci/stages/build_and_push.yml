@@ -28,7 +28,7 @@
   --redis-cache-addr=redis-svc:6379  \
   "${CONTEXT}";
 
-.makisu-builder:
+.makisu-builder-base:
   image:
     # yamllint disable-line rule:line-length
     name: gcr.io/uber-container-tools/makisu-alpine:v0.4.1@sha256:0fc8ba49b6a219e68009eac4e9ca4d4120b04cf3b18eb9d499bda0beb387a65d
@@ -67,6 +67,10 @@
     - |
       echo "${REGISTRY_CONFIG}" \
       | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
+
+.makisu-builder:
+  extends:
+    - .makisu-builder-base
   script:
     - apk add coreutils # For updated `sort` binary
     - for DOCKERFILE in $(ls -d "${CONTEXT}"/* | sort -V); do
