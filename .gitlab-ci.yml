@@ -8,7 +8,8 @@ include:
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
-    file: '/.gitlab/ci/stages/build_and_push_docker_image/jobs/multi.yml'
+    # yamllint disable-line rule:line-length
+    file: '/.gitlab/ci/stages/build_and_push_docker_image/jobs/dockerfiles-dir-filename-namespaced-images.yml'
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
