@@ -9,10 +9,12 @@
   REPLICA_TAG="${DOCKERFILE_FILENAME}${REPLICA_TAG_SUFFIX}" && \
   CI_IMAGE_ALT="${CI_REGISTRY_IMAGE}:${REPLICA_TAG}";
 
-.makisu-build-script-template: &makisu-build-script |
+.log-makisu-build-vars-template: &log-makisu-build-vars |
   echo "Image tags for Dockerfile \`${DOCKERFILE_FILENAME}\`" && \
   echo "TAG=\`${TAG}\`" && \
-  echo "REPLICA_TAG=\`${REPLICA_TAG}"\` && \
+  echo "REPLICA_TAG=\`${REPLICA_TAG}"\`;
+
+.makisu-build-script-template: &makisu-build-script |
   /makisu-internal/makisu \
   --log-level=debug \
   --log-fmt=console \
@@ -77,6 +79,7 @@
     - apk add coreutils # For updated `sort` binary
     - for DOCKERFILE in $(ls -d "${CONTEXT}"/* | sort -V); do
     - *setup-makisu-build-vars
+    - *log-makisu-build-vars
     - *makisu-build-script
     - done
 
