@@ -25,7 +25,7 @@ include:
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
-    file: '/.gitlab/ci/stages/code_quality.yml'
+    file: '/.gitlab/ci/stages/code_quality/jobs/pre-commit-hooks.yml'
 
 stages:
   - Build & Push Docker Image
