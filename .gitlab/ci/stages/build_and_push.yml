@@ -2,6 +2,32 @@
 
 # Build job ------------------------
 
+.makisu-build-script-template: &makisu-build-script |
+  DOCKERFILE_FILENAME="${DOCKERFILE##*/}" && \
+  TAG="${DOCKERFILE_FILENAME}${TAG_SUFFIX}" && \
+  CI_IMAGE="${CI_REGISTRY_IMAGE}:${TAG}" && \
+  REPLICA_TAG="${DOCKERFILE_FILENAME}${REPLICA_TAG_SUFFIX}" && \
+  CI_IMAGE_ALT="${CI_REGISTRY_IMAGE}:${REPLICA_TAG}" && \
+  echo "Image tags for Dockerfile \`${DOCKERFILE_FILENAME}\`" && \
+  echo "TAG=\`${TAG}\`" && \
+  echo "REPLICA_TAG=\`${REPLICA_TAG}"\` && \
+  /makisu-internal/makisu \
+  --log-level=debug \
+  --log-fmt=console \
+  build \
+  --replica="${CI_REGISTRY}/${CI_IMAGE_ALT}" \
+  --push=$CI_REGISTRY \
+  --modifyfs \
+  --preserve-root \
+  -t="${CI_IMAGE}" \
+  --registry-config="${REGISTRY_CONFIG_FILE}" \
+  -f="${DOCKERFILE}" \
+  --build-arg=DOCKER_TAG="${TAG}" \
+  --commit=implicit \
+  --storage=/makisu-storage \
+  --redis-cache-addr=redis-svc:6379  \
+  "${CONTEXT}";
+
 .makisu-builder:
   image:
     # yamllint disable-line rule:line-length
@@ -43,33 +69,9 @@
       echo "${REGISTRY_CONFIG}" \
       | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
   script:
-    - |
-      for DOCKERFILE in $(ls -d "${CONTEXT}"/* | sort -V); do
-        DOCKERFILE_FILENAME="${DOCKERFILE##*/}" && \
-        TAG="${DOCKERFILE_FILENAME}${TAG_SUFFIX}" && \
-        CI_IMAGE="${CI_REGISTRY_IMAGE}:${TAG}" && \
-        REPLICA_TAG="${DOCKERFILE_FILENAME}${REPLICA_TAG_SUFFIX}" && \
-        CI_IMAGE_ALT="${CI_REGISTRY_IMAGE}:${REPLICA_TAG}" && \
-        echo "Image tags for Dockerfile \`${DOCKERFILE_FILENAME}\`" && \
-        echo "TAG=\`${TAG}\`" && \
-        echo "REPLICA_TAG=\`${REPLICA_TAG}"\` && \
-        /makisu-internal/makisu \
-        --log-level=debug \
-        --log-fmt=console \
-        build \
-        --replica="${CI_REGISTRY}/${CI_IMAGE_ALT}" \
-        --push=$CI_REGISTRY \
-        --modifyfs \
-        --preserve-root \
-        -t="${CI_IMAGE}" \
-        --registry-config="${REGISTRY_CONFIG_FILE}" \
-        -f="${DOCKERFILE}" \
-        --build-arg=DOCKER_TAG="${TAG}" \
-        --commit=implicit \
-        --storage=/makisu-storage \
-        --redis-cache-addr=redis-svc:6379  \
-        "${CONTEXT}";
-      done
+    - for DOCKERFILE in $(ls -d "${CONTEXT}"/* | sort -V); do
+    - *makisu-build-script
+    - done
 
 build-and-push:docker-image:
   stage: Build & Push
