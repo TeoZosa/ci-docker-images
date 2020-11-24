@@ -68,7 +68,7 @@
       echo "${REGISTRY_CONFIG}" \
       | yq read - --prettyPrint > "${REGISTRY_CONFIG_FILE}"
 
-.makisu-builder:
+.makisu-builder-multi:
   extends:
     - .makisu-builder-base
   script:
@@ -77,10 +77,10 @@
     - *makisu-build-script
     - done
 
-build-and-push:docker-image:
+build-and-push:docker-image-multi:
   stage: Build & Push
   extends:
-    - .makisu-builder
+    - .makisu-builder-multi
     - .retry
   variables:
     CONTEXT: "${CI_PROJECT_DIR}/Dockerfiles"
