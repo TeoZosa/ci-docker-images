@@ -7,4 +7,4 @@ pull:docker-image:
   extends:
     - .ci-image-pull-boilerplate
   script:
-    - echo "Successfully pulled ${SUPERSET_CI_IMAGE}"
+    - echo "Successfully pulled ${CI_IMAGE}"
