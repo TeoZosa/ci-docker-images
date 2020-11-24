@@ -14,7 +14,7 @@
   echo "TAG=\`${TAG}\`" && \
   echo "REPLICA_TAG=\`${REPLICA_TAG}"\`;
 
-.makisu-build-script-template: &makisu-build-script |
+.makisu-build-image-template: &makisu-build-image |
   /makisu-internal/makisu \
   --log-level=debug \
   --log-fmt=console \
@@ -80,7 +80,7 @@
     - for DOCKERFILE in $(ls -d "${CONTEXT}"/* | sort -V); do
     - *setup-makisu-build-vars
     - *log-makisu-build-vars
-    - *makisu-build-script
+    - *makisu-build-image
     - done
 
 build-and-push:docker-image-multi:
