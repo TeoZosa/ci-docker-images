@@ -16,7 +16,11 @@ include:
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
-    file: '/.gitlab/ci/stages/sast.yml'
+    file: '/.gitlab/ci/stages/sast/jobs/scan-dependencies.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    # yamllint disable-line rule:line-length
+    ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
+    file: '/.gitlab/ci/stages/sast/jobs/scan-container.yml'
   - project: 'CorSAIR/ci-cd/pipeline-templates'
     # yamllint disable-line rule:line-length
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
