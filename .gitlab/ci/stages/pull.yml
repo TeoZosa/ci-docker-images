@@ -1,0 +1,10 @@
+---
+
+# Pull built image to local container store for downstream jobs
+pull:docker-image:
+  stage: pull
+  needs: ["build-and-push:docker-image"]
+  extends:
+    - .ci-image-pull-boilerplate
+  script:
+    - echo "Successfully pulled ${SUPERSET_CI_IMAGE}"

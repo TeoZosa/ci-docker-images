@@ -1,0 +1,8 @@
+---
+
+pre-commit-hooks:
+  stage: Code Quality
+  extends:
+    - .ci-image-based-job-boilerplate
+  script:
+    - make pre-commit
