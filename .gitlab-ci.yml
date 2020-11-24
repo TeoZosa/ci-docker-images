@@ -3,9 +3,18 @@
 include:
   - '/.gitlab/ci/stages/globals.yml'
   - '/.gitlab/ci/stages/build_and_push.yml'
-  - '/.gitlab/ci/stages/pull.yml'
-  - '/.gitlab/ci/stages/sast.yml'
-  - '/.gitlab/ci/stages/code_quality.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    # yamllint disable-line rule:line-length
+    ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
+    file: '/.gitlab/ci/stages/pull.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    # yamllint disable-line rule:line-length
+    ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
+    file: '/.gitlab/ci/stages/sast.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    # yamllint disable-line rule:line-length
+    ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
+    file: '/.gitlab/ci/stages/code_quality.yml'
 
 cache:
   key: "${CI_JOB_NAME}"
@@ -16,6 +25,6 @@ cache:
 
 stages:
   - Build & Push
-  - pull
+  - Pull Docker Image
   - SAST
   - Code Quality
