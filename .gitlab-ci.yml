@@ -22,13 +22,6 @@ include:
     ref: RND-793_ExtractDynamicallyIncludablePipelineConfigurationFilesIntoStandaloneRepository
     file: '/.gitlab/ci/stages/code_quality.yml'
 
-cache:
-  key: "${CI_JOB_NAME}"
-  paths:
-    - .cache/pip
-    - .cache/pypoetry
-    - .venv
-
 stages:
   - Build & Push
   - Pull Docker Image
