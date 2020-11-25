@@ -1,21 +1,34 @@
 ---
 
 include:
-  - '/.gitlab/ci/stages/globals.yml'
-  - '/.gitlab/ci/stages/build_and_push.yml'
-  - '/.gitlab/ci/stages/pull.yml'
-  - '/.gitlab/ci/stages/sast.yml'
-  - '/.gitlab/ci/stages/code_quality.yml'
-
-cache:
-  key: "${CI_JOB_NAME}"
-  paths:
-    - .cache/pip
-    - .cache/pypoetry
-    - .venv
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    ref: master
+    file: '/.gitlab/ci/stages/globals.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    ref: master
+    # yamllint disable-line rule:line-length
+    file: '/.gitlab/ci/stages/build_and_push_docker_image/jobs/dockerfiles-dir-filename-namespaced-images.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    ref: master
+    file: '/.gitlab/ci/stages/pull_docker_image/jobs/pull.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    ref: master
+    file: '/.gitlab/ci/stages/sast/jobs/all.yml'
+  - project: 'CorSAIR/ci-cd/pipeline-templates'
+    ref: master
+    file: '/.gitlab/ci/stages/code_quality/jobs/pre-commit-hooks.yml'
 
 stages:
-  - Build & Push
-  - pull
+  - Build & Push Docker Image
+  - Pull Docker Image
   - SAST
   - Code Quality
+
+variables:
+  CI_REGISTRY_IMAGE: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}"
+  # yamllint disable-line rule:line-length
+  CI_DOCKERFILE_FILENAME: "pyenv-python-3.7.9-3.8.6-3.9.0-poetry-hadolint-go-1.15.5"
+  # yamllint disable-line rule:line-length
+  CI_IMAGE: "${DOCKER_NAMESPACE}/${CI_PROJECT_NAME}:${CI_DOCKERFILE_FILENAME}_${CI_COMMIT_SHORT_SHA}"
+  TAG_SUFFIX: "_${CI_COMMIT_SHORT_SHA}"
+  REPLICA_TAG_SUFFIX: "_${CI_COMMIT_REF_SLUG}"
