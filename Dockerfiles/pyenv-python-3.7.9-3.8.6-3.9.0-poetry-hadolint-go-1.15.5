@@ -19,7 +19,7 @@ ENV GO111MODULE=on \
 # hadolint ignore=DL4006,SC2039
 RUN GO_TAR=go1.15.5.linux-amd64.tar.gz && \
     set -o pipefail && \
-    curl -sSL "https://golang.org/dl/${GO_TAR}" | tar -C /usr/local -xzvf -
+    curl -sSL "https://golang.org/dl/${GO_TAR}" | tar -C /usr/local -xzf -
 
 WORKDIR /app
 ENTRYPOINT ["/bin/bash"]
