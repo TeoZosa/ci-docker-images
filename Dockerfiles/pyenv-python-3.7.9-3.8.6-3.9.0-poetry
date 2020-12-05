@@ -48,7 +48,7 @@ RUN apt-get update && \
         libffi-dev=3.3-5 \
         liblzma-dev=5.2.4-1+b1 \
         libncurses5-dev=6.2+20200918-1 \
-        libreadline-dev=8.1~rc2-2 \
+        libreadline-dev=8.1~rc3-1 \
         libsqlite3-dev=3.33.0-1 \
         libssl-dev=1.1.1h-1 \
         libxml2-dev=2.9.10+dfsg-6.2 \
