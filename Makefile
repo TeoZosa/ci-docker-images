@@ -71,7 +71,7 @@ clean:
 .PHONY: update-dependencies
 ## Install Python dependencies,
 ## updating packages in `poetry.lock` with any newer versions specified in
-## `pyproject.toml`, and install maelstroms source code
+## `pyproject.toml`
 update-dependencies:
 	poetry update --lock
 ifneq (${CI}, true)
