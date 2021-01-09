@@ -43,20 +43,20 @@ RUN git clone https://github.com/pyenv/pyenv.git "${PYENV_ROOT}" && \
 # hadolint ignore=DL4006,SC2016,SC2039,SC2046
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        build-essential=12.8 \
+        build-essential=12.9 \
         libbz2-dev=1.0.8-4 \
         libffi-dev=3.3-5 \
-        liblzma-dev=5.2.4-1+b1 \
-        libncurses5-dev=6.2+20201114-1 \
+        liblzma-dev=5.2.5-1.0 \
+        libncurses5-dev=6.2+20201114-2 \
         libreadline-dev=8.1-1 \
         libsqlite3-dev=3.34.0-1 \
-        libssl-dev=1.1.1h-1 \
+        libssl-dev=1.1.1i-1 \
         libxml2-dev=2.9.10+dfsg-6.3+b1 \
         libxmlsec1-dev=1.2.31-1 \
-        llvm=1:11.0-51 \
+        llvm=1:11.0-51+nmu1 \
         parallel=20161222-1.1 \
-        tk-dev=8.6.9+1+b1 \
-        xz-utils=5.2.4-1+b1 \
+        tk-dev=8.6.10 \
+        xz-utils=5.2.5-1.0 \
         zlib1g-dev=1:1.2.11.dfsg-2 && \
     PYTHON_VERSIONS=(3.7.9 3.8.6 3.9.0) && \
     parallel -j 0 -k pyenv install {} ::: "${PYTHON_VERSIONS[@]}" && \
