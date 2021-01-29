@@ -55,7 +55,7 @@ RUN apt-get update && \
         libxmlsec1-dev=1.2.31-1 \
         llvm=1:11.0-51+nmu4 \
         parallel=20161222-1.1 \
-        tk-dev=8.6.10 \
+        tk-dev=8.6.11 \
         xz-utils=5.2.5-1.0 \
         zlib1g-dev=1:1.2.11.dfsg-2 && \
     PYTHON_VERSIONS=(3.7.9 3.8.6 3.9.0) && \
