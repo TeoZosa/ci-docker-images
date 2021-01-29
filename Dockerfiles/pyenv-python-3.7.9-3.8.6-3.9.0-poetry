@@ -53,7 +53,7 @@ RUN apt-get update && \
         libssl-dev=1.1.1i-2 \
         libxml2-dev=2.9.10+dfsg-6.3+b1 \
         libxmlsec1-dev=1.2.31-1 \
-        llvm=1:11.0-51+nmu1 \
+        llvm=1:11.0-51+nmu4 \
         parallel=20161222-1.1 \
         tk-dev=8.6.10 \
         xz-utils=5.2.5-1.0 \
