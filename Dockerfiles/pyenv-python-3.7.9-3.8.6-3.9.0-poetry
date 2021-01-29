@@ -18,7 +18,7 @@ ENV BASH_ENV="${ENV}"
 # Install common functionality for downstream layers/user env
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        ca-certificates=20200601 \
+        ca-certificates=20210119 \
         curl=7.74.0-1 \
         git=1:2.29.2-1 \
         make=4.3-4 \
