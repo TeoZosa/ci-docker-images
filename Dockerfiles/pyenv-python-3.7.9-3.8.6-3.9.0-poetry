@@ -50,7 +50,7 @@ RUN apt-get update && \
         libncurses5-dev=6.2+20201114-2 \
         libreadline-dev=8.1-1 \
         libsqlite3-dev=3.34.1-1 \
-        libssl-dev=1.1.1i-1 \
+        libssl-dev=1.1.1i-2 \
         libxml2-dev=2.9.10+dfsg-6.3+b1 \
         libxmlsec1-dev=1.2.31-1 \
         llvm=1:11.0-51+nmu1 \
