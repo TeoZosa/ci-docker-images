@@ -28,7 +28,7 @@ repos:
       - id: script-must-not-have-extension
 
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.25.0
+    rev: v1.26.0
     hooks:
       - id: yamllint
 
