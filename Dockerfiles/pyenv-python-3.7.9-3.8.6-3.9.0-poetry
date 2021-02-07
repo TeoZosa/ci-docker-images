@@ -20,7 +20,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates=20210119 \
         curl=7.74.0-1 \
-        git=1:2.29.2-1 \
+        git=1:2.30.0-1 \
         git-lfs=2.13.2-1 \
         make=4.3-4 \
         procps=2:3.3.16-5 && \
