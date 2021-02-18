@@ -22,7 +22,7 @@ repos:
       - id: poetry-check
 
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
-    rev: 2.1.4
+    rev: 2.1.5
     hooks:
       - id: script-must-have-extension
       - id: script-must-not-have-extension
