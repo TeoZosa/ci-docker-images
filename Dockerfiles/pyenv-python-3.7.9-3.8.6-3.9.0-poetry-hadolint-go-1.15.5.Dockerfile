@@ -6,7 +6,7 @@ ENV LANG C.UTF-8
 
 # Install executable for pre-commit hook (`hadolint`)
 RUN HADOLINT_GIT_REPO="https://github.com/hadolint/hadolint" && \
-    HADOLINT_BINARIES="${HADOLINT_GIT_REPO}/releases/download/v1.19.0" && \
+    HADOLINT_BINARIES="${HADOLINT_GIT_REPO}/releases/download/v2.0.0" && \
     curl -sSL "${HADOLINT_BINARIES}/hadolint-Linux-x86_64" -o /bin/hadolint && \
     chmod +x /bin/hadolint
 
