@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:experimental
 
-FROM debian:bullseye-slim@sha256:1c4755911d97f463602833877de76e956e03b8a9c47887c61a5b5d6ae9fbdfa0
+FROM debian:bullseye-slim@sha256:697685da31675cd0c04f9d40592055b71d6bfa163be54ff2148dc1967113948b
 
 LABEL maintainer="Teofilo Zosa <teo@sonosim.com>"
 ENV LANG C.UTF-8
