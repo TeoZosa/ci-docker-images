@@ -60,7 +60,7 @@ ARG LIBBZ2_DEV_VERSION="1.0.8-4"
 # renovate: datasource=repology depName=debian_testing/libffi-dev versioning=loose
 ARG LIBFFI_DEV_VERSION="3.3-6"
 # renovate: datasource=repology depName=debian_testing/liblzma-dev versioning=loose
-ARG LIBLZMA_DEV_VERSION="5.2.5-1.0"
+ARG LIBLZMA_DEV_VERSION="5.2.5-2"
 # renovate: datasource=repology depName=debian_testing/libncurses5-dev versioning=loose
 ARG LIBNCURSES5_DEV_VERSION="6.2+20201114-2"
 # renovate: datasource=repology depName=debian_testing/libreadline-dev versioning=loose
@@ -80,7 +80,7 @@ ARG PARALLEL_VERSION="20161222-1.1"
 # renovate: datasource=repology depName=debian_testing/tk-dev versioning=loose
 ARG TK_DEV_VERSION="8.6.11+1"
 # renovate: datasource=repology depName=debian_testing/xz-utils versioning=loose
-ARG XZ_UTILS_VERSION="5.2.5-1.0"
+ARG XZ_UTILS_VERSION="5.2.5-2"
 # renovate: datasource=repology depName=debian_testing/zlib1g-dev versioning=loose
 ARG ZLIB1G_DEV_VERSION="1:1.2.11.dfsg-2"
 # hadolint ignore=DL4006,SC2016,SC2039,SC2046
