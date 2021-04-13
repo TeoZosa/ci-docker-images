@@ -19,11 +19,11 @@ ENV BASH_ENV="${ENV}"
 # renovate: datasource=repology depName=debian_testing/ca-certificates versioning=loose
 ARG CA_CERTIFICATES_VERSION="20210119"
 # renovate: datasource=repology depName=debian_testing/curl versioning=loose
-ARG CURL_VERSION="7.74.0-1.1"
+ARG CURL_VERSION="7.74.0-1.2"
 # renovate: datasource=repology depName=debian_testing/git versioning=loose
 ARG GIT_VERSION="1:2.30.2-1"
 # renovate: datasource=repology depName=debian_testing/git-lfs versioning=loose
-ARG GIT_LFS_VERSION="2.13.2-1+b1"
+ARG GIT_LFS_VERSION="2.13.2-1+b2"
 # renovate: datasource=repology depName=debian_testing/make versioning=loose
 ARG MAKE_VERSION="4.3-4"
 # renovate: datasource=repology depName=debian_testing/procps versioning=loose
