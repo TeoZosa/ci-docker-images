@@ -101,7 +101,7 @@ RUN apt-get update && \
         tk-dev=${TK_DEV_VERSION} \
         xz-utils=${XZ_UTILS_VERSION} \
         zlib1g-dev=${ZLIB1G_DEV_VERSION} && \
-    PYTHON_VERSIONS=(3.7.9 3.8.6 3.9.0) && \
+    PYTHON_VERSIONS=(3.7.9 3.8.6 3.9.4) && \
     parallel -j 0 -k pyenv install {} ::: "${PYTHON_VERSIONS[@]}" && \
     pyenv global $(pyenv versions --bare) && \
     find $PYENV_ROOT/versions -type d \

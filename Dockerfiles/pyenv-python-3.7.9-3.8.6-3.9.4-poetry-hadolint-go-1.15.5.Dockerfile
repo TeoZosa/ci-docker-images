@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:experimental
 
-FROM teozosa/docker-images:pyenv-python-3.7.9-3.8.6-3.9.0-poetry_master
+FROM teozosa/docker-images:pyenv-python-3.7.9-3.8.6-3.9.4-poetry_master
 LABEL maintainer="Teofilo Zosa <teo@sonosim.com>"
 ENV LANG C.UTF-8
 
