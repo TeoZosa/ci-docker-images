@@ -17,7 +17,7 @@ ENV GO111MODULE=on \
     GOARCH=amd64 \
     PATH="${PATH}:/usr/local/go/bin"
 # hadolint ignore=DL4006,SC2039
-RUN GO_TAR=go1.16.2.linux-amd64.tar.gz && \
+RUN GO_TAR=go1.16.3.linux-amd64.tar.gz && \
     set -o pipefail && \
     curl -sSL "https://golang.org/dl/${GO_TAR}" | tar -C /usr/local -xzf -
 
