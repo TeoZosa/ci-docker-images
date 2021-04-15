@@ -1,7 +1,7 @@
 ---
 repos:
   - repo: https://github.com/Yelp/detect-secrets
-    rev: v0.14.4
+    rev: v1.1.0
     hooks:
       - id: detect-secrets
         exclude: poetry.lock
