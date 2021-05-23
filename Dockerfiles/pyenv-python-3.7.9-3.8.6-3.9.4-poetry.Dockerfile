@@ -25,9 +25,9 @@ ARG GIT_VERSION="1:2.30.2-1"
 # renovate: datasource=repology depName=debian_testing/git-lfs versioning=loose
 ARG GIT_LFS_VERSION="2.13.2-1+b2"
 # renovate: datasource=repology depName=debian_testing/make versioning=loose
-ARG MAKE_VERSION="4.3-4"
+ARG MAKE_VERSION="4.3-4.1"
 # renovate: datasource=repology depName=debian_testing/procps versioning=loose
-ARG PROCPS_VERSION="2:3.3.17-4"
+ARG PROCPS_VERSION="2:3.3.17-5"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates=${CA_CERTIFICATES_VERSION} \
@@ -70,7 +70,7 @@ ARG LIBSQLITE3_DEV_VERSION="3.34.1-3"
 # renovate: datasource=repology depName=debian_testing/libssl-dev versioning=loose
 ARG LIBSSL_DEV_VERSION="1.1.1k-1"
 # renovate: datasource=repology depName=debian_testing/libxml2-dev versioning=loose
-ARG LIBXML2_DEV_VERSION="2.9.10+dfsg-6.3+b1"
+ARG LIBXML2_DEV_VERSION="2.9.10+dfsg-6.6"
 # renovate: datasource=repology depName=debian_testing/libxmlsec1-dev versioning=loose
 ARG LIBXMLSEC1_DEV_VERSION="1.2.31-1"
 # renovate: datasource=repology depName=debian_testing/llvm versioning=loose
