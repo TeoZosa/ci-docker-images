@@ -48,7 +48,7 @@ RUN git clone https://github.com/pyenv/pyenv.git "${PYENV_ROOT}" && \
         if command -v pyenv 1>/dev/null 2>&1 && [ -z "${PYENV_LOADED+x}" ]; \
         then\n \
             export PYENV_LOADED="true"\n \
-            eval "$(pyenv init -)"\n \
+            eval "$(pyenv init --path)"\n \
         fi\n' \
         >> "${ENV}"
 
