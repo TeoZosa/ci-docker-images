@@ -133,11 +133,11 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install `poetry` via `curl` and system `python`
-ENV PATH="${HOME}/.poetry/bin:${PATH}"
+ENV PATH="${HOME}/.local/bin:${PATH}"
 # hadolint ignore=DL4006,SC2039
 RUN . "${ENV}" && \
     set -o pipefail && \
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python && \
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python && \
     poetry --version && \
     poetry config virtualenvs.in-project true && \
     poetry config --list
