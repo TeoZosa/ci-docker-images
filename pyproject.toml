@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "Docker Images"
+name = "CI Docker Images"
 version = "0.1.0"
-description = "SonoSim Docker Base Container Images for CorSAIR Projects and CI Jobs"
+description = "Containerized base environments for Python project CI pipelines."
 authors = ["Teo Zosa <teo@sonosim.com>"]
 readme = "README.md"
-repository = "http://gitlab.sonosim.local/CorSAIR/ci-cd/docker-images"
-homepage = "http://gitlab.sonosim.local/CorSAIR/ci-cd/docker-images"
-keywords = ["AI", "CorSAIR", "CI", "CD"]
+repository = "https://github.com/TeoZosa/ci-docker-images"
+homepage = "https://github.com/TeoZosa/ci-docker-images"
+keywords = ["AI", "CI", "CD"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
