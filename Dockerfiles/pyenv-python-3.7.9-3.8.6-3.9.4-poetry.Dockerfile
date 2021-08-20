@@ -16,17 +16,17 @@ ENV ENV="${HOME}/.bashrc"
 ENV BASH_ENV="${ENV}"
 
 # Install common functionality for downstream layers/user env
-# renovate: datasource=repology depName=debian_testing/ca-certificates versioning=loose
+# renovate: datasource=repology depName=debian_stable/ca-certificates versioning=loose
 ARG CA_CERTIFICATES_VERSION="20210119"
-# renovate: datasource=repology depName=debian_testing/curl versioning=loose
+# renovate: datasource=repology depName=debian_stable/curl versioning=loose
 ARG CURL_VERSION="7.74.0-1.2"
-# renovate: datasource=repology depName=debian_testing/git versioning=loose
+# renovate: datasource=repology depName=debian_stable/git versioning=loose
 ARG GIT_VERSION="1:2.30.2-1"
-# renovate: datasource=repology depName=debian_testing/git-lfs versioning=loose
+# renovate: datasource=repology depName=debian_stable/git-lfs versioning=loose
 ARG GIT_LFS_VERSION="2.13.2-1+b2"
-# renovate: datasource=repology depName=debian_testing/make versioning=loose
+# renovate: datasource=repology depName=debian_stable/make versioning=loose
 ARG MAKE_VERSION="4.3-4.1"
-# renovate: datasource=repology depName=debian_testing/procps versioning=loose
+# renovate: datasource=repology depName=debian_stable/procps versioning=loose
 ARG PROCPS_VERSION="2:3.3.17-5"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -53,35 +53,35 @@ RUN git clone https://github.com/pyenv/pyenv.git "${PYENV_ROOT}" && \
         >> "${ENV}"
 
 # Install `pyenv` Python source build tools and Python Interpreters
-# renovate: datasource=repology depName=debian_testing/build-essential versioning=loose
+# renovate: datasource=repology depName=debian_stable/build-essential versioning=loose
 ARG BUILD_ESSENTIAL_VERSION="12.9"
-# renovate: datasource=repology depName=debian_testing/libbz2-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libbz2-dev versioning=loose
 ARG LIBBZ2_DEV_VERSION="1.0.8-4"
-# renovate: datasource=repology depName=debian_testing/libffi-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libffi-dev versioning=loose
 ARG LIBFFI_DEV_VERSION="3.3-6"
-# renovate: datasource=repology depName=debian_testing/liblzma-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/liblzma-dev versioning=loose
 ARG LIBLZMA_DEV_VERSION="5.2.5-2"
-# renovate: datasource=repology depName=debian_testing/libncurses5-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libncurses5-dev versioning=loose
 ARG LIBNCURSES5_DEV_VERSION="6.2+20201114-2"
-# renovate: datasource=repology depName=debian_testing/libreadline-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libreadline-dev versioning=loose
 ARG LIBREADLINE_DEV_VERSION="8.1-1"
-# renovate: datasource=repology depName=debian_testing/libsqlite3-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libsqlite3-dev versioning=loose
 ARG LIBSQLITE3_DEV_VERSION="3.34.1-3"
-# renovate: datasource=repology depName=debian_testing/libssl-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libssl-dev versioning=loose
 ARG LIBSSL_DEV_VERSION="1.1.1k-1"
-# renovate: datasource=repology depName=debian_testing/libxml2-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libxml2-dev versioning=loose
 ARG LIBXML2_DEV_VERSION="2.9.10+dfsg-6.6"
-# renovate: datasource=repology depName=debian_testing/libxmlsec1-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/libxmlsec1-dev versioning=loose
 ARG LIBXMLSEC1_DEV_VERSION="1.2.31-1"
-# renovate: datasource=repology depName=debian_testing/llvm versioning=loose
+# renovate: datasource=repology depName=debian_stable/llvm versioning=loose
 ARG LLVM_VERSION="1:11.0-51+nmu4"
-# renovate: datasource=repology depName=debian_testing/parallel versioning=loose
+# renovate: datasource=repology depName=debian_stable/parallel versioning=loose
 ARG PARALLEL_VERSION="20161222-1.1"
-# renovate: datasource=repology depName=debian_testing/tk-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/tk-dev versioning=loose
 ARG TK_DEV_VERSION="8.6.11+1"
-# renovate: datasource=repology depName=debian_testing/xz-utils versioning=loose
+# renovate: datasource=repology depName=debian_stable/xz-utils versioning=loose
 ARG XZ_UTILS_VERSION="5.2.5-2"
-# renovate: datasource=repology depName=debian_testing/zlib1g-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/zlib1g-dev versioning=loose
 ARG ZLIB1G_DEV_VERSION="1:1.2.11.dfsg-2"
 # hadolint ignore=DL4006,SC2016,SC2039,SC2046
 RUN apt-get update && \
@@ -143,7 +143,7 @@ RUN . "${ENV}" && \
     poetry config --list
 
 # Install MySQL for downstream client images
-# renovate: datasource=repology depName=debian_testing/default-libmysqlclient-dev versioning=loose
+# renovate: datasource=repology depName=debian_stable/default-libmysqlclient-dev versioning=loose
 ARG DEFAULT_LIBMYSQLCLIENT_DEV_VERSION="1.0.7"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
