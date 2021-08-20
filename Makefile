@@ -81,6 +81,10 @@ provision-environment: _validate_poetry_installation
 	poetry update --lock -vv
 	poetry install -vv
 
+.PHONY: install-pre-commit-hooks
+## Install git pre-commit hooks locally
+install-pre-commit-hooks:
+	poetry run pre-commit install
 
 .PHONY: tox-%
 ## Run specified tox testenvs
