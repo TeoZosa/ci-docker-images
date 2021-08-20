@@ -22,6 +22,37 @@ PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PROJECT_NAME := $(shell basename $(PROJECT_DIR))
 
 #################################################################################
+# HELPER TARGETS                                                                #
+#################################################################################
+
+.PHONY: update-dependencies
+## Install Python dependencies,
+## updating packages in `poetry.lock` with any newer versions specified in
+## `pyproject.toml`, and install cookiecutter-cruft-poetry-tox-pre-commit-ci-cd-instance source code
+update-dependencies:
+	poetry update --lock
+ifneq (${CI}, true)
+	poetry install
+endif
+
+.PHONY: generate-requirements
+## Generate project requirements files from `pyproject.toml`
+generate-requirements:
+	poetry export -f requirements.txt --without-hashes > requirements.txt # subset
+	poetry export --dev -f requirements.txt --without-hashes > requirements-dev.txt # superset w/o docs
+
+.PHONY: clean-requirements
+## Clean generated project requirements files
+clean-requirements:
+	find . -type f -name "requirements*.txt" -delete -maxdepth 1
+
+.PHONY: clean
+## Delete all compiled Python files
+clean:
+	find . -type f -name "*.py[co]" -delete
+	find . -type d -name "__pycache__" -delete
+
+#################################################################################
 # COMMANDS                                                                      #
 #################################################################################
 
@@ -50,44 +81,16 @@ lint:
 	$(MAKE) scan-dependencies
 	$(MAKE) pre-commit
 
+.PHONY: scan-dependencies
+## Scan dependencies for security vulnerabilities
+scan-dependencies:
+	poetry run tox -e security
+
 .PHONY: pre-commit
 ## Lint using pre-commit hooks (see `.pre-commit-config.yaml`)
 pre-commit: clean update-dependencies generate-requirements
 	poetry run tox -e precommit
 	$(MAKE) clean-requirements
-
-.PHONY: scan-dependencies
-## Scan dependencies for security vulnerabilities
-scan-dependencies: clean update-dependencies generate-requirements
-	poetry run tox -e security
-	$(MAKE) clean-requirements
-
-.PHONY: clean
-## Delete all compiled Python files
-clean:
-	find . -type f -name "*.py[co]" -delete
-	find . -type d -name "__pycache__" -delete
-
-.PHONY: update-dependencies
-## Install Python dependencies,
-## updating packages in `poetry.lock` with any newer versions specified in
-## `pyproject.toml`
-update-dependencies:
-	poetry update --lock
-ifneq (${CI}, true)
-	poetry install
-endif
-
-.PHONY: generate-requirements
-## Generate project requirements files from `pyproject.toml`
-generate-requirements:
-	poetry export -f requirements.txt --without-hashes > requirements.txt # subset
-	poetry export --dev -f requirements.txt --without-hashes > requirements-dev.txt # superset
-
-.PHONY: clean-requirements
-## clean generated project requirements files
-clean-requirements:
-	find . -type f -name "requirements*.txt" -delete
 
 #################################################################################
 # Self Documenting Commands                                                     #
