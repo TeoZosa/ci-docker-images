@@ -81,6 +81,13 @@ provision-environment: _validate_poetry_installation
 	poetry update --lock -vv
 	poetry install -vv
 
+
+.PHONY: tox-%
+## Run specified tox testenvs
+tox-%: clean update-dependencies generate-requirements
+	poetry run tox -e $* -- $(POSARGS)
+	$(MAKE) clean-requirements
+
 .PHONY: lint
 ## Run full static analysis suite for local development
 lint:
@@ -90,13 +97,21 @@ lint:
 .PHONY: scan-dependencies
 ## Scan dependencies for security vulnerabilities
 scan-dependencies:
-	poetry run tox -e security
+	$(MAKE) tox-security
 
 .PHONY: pre-commit
 ## Lint using pre-commit hooks (see `.pre-commit-config.yaml`)
-pre-commit: clean update-dependencies generate-requirements
-	poetry run tox -e precommit
-	$(MAKE) clean-requirements
+pre-commit:
+	# Note: Running through `tox` since some hooks rely on finding their executables
+	# in the `.tox/precommit/bin` directory and to provide an extra layer of isolation
+	# for reproducibility.
+	$(MAKE) tox-precommit POSARGS=$(PRECOMMIT_HOOK_ID)
+
+.PHONY: pre-commit-%
+## Lint using a single specific pre-commit hook (see `.pre-commit-config.yaml`)
+pre-commit-%: export SKIP= # Reset `SKIP` env var to force single hooks to always run
+pre-commit-%:
+	$(MAKE) pre-commit PRECOMMIT_HOOK_ID=$*
 
 #################################################################################
 # Self Documenting Commands                                                     #
