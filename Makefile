@@ -25,6 +25,25 @@ PROJECT_NAME := $(shell basename $(PROJECT_DIR))
 # HELPER TARGETS                                                                #
 #################################################################################
 
+.PHONY: _validate_poetry_installation
+_validate_poetry_installation:
+ifeq ($(shell command -v poetry),)
+	@echo "poetry could not be found!"
+	@echo "Please install poetry!"
+	@echo "Ex.: 'curl -sSL \
+	https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py  | python - \
+	&& source $$HOME/.local/env'"
+	@echo "see:"
+	@echo "- https://python-poetry.org/docs/#installation"
+	@echo "Note: 'pyenv' recommended for Python version management"
+	@echo "see:"
+	@echo "- https://github.com/pyenv/pyenv"
+	@echo "- https://python-poetry.org/docs/managing-environments/"
+	false
+else
+	@echo "Using $(shell poetry --version) in $(shell which poetry)"
+endif
+
 .PHONY: update-dependencies
 ## Install Python dependencies,
 ## updating packages in `poetry.lock` with any newer versions specified in
@@ -58,22 +77,9 @@ clean:
 
 .PHONY: provision-environment
 ## Set up Python virtual environment with installed project dependencies
-provision-environment:
-ifeq ($(shell command -v poetry),)
-	@echo "poetry could not be found!"
-	@echo "Please install poetry!"
-	@echo "Ex.: 'curl -sSL \
-	https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - \
-	&& source $$HOME/.poetry/env'"
-	@echo "Note: 'pyenv' recommended for Python version management"
-	@echo "see:"
-	@echo "- https://github.com/pyenv/pyenv"
-	@echo "- https://python-poetry.org/docs/managing-environments/"
-	false
-else
+provision-environment: _validate_poetry_installation
 	poetry update --lock -vv
 	poetry install -vv
-endif
 
 .PHONY: lint
 ## Run full static analysis suite for local development
