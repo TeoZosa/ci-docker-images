@@ -19,11 +19,11 @@ ENV BASH_ENV="${ENV}"
 # renovate: datasource=repology depName=debian_testing/ca-certificates versioning=loose
 ARG CA_CERTIFICATES_VERSION="20210119"
 # renovate: datasource=repology depName=debian_testing/curl versioning=loose
-ARG CURL_VERSION="7.74.0-1.2"
+ARG CURL_VERSION="7.74.0-1.3"
 # renovate: datasource=repology depName=debian_testing/git versioning=loose
-ARG GIT_VERSION="1:2.30.2-1"
+ARG GIT_VERSION="1:2.32.0-1"
 # renovate: datasource=repology depName=debian_testing/git-lfs versioning=loose
-ARG GIT_LFS_VERSION="2.13.2-1+b2"
+ARG GIT_LFS_VERSION="2.13.3-1"
 # renovate: datasource=repology depName=debian_testing/make versioning=loose
 ARG MAKE_VERSION="4.3-4.1"
 # renovate: datasource=repology depName=debian_testing/procps versioning=loose
@@ -64,15 +64,15 @@ ARG LIBLZMA_DEV_VERSION="5.2.5-2"
 # renovate: datasource=repology depName=debian_testing/libncurses5-dev versioning=loose
 ARG LIBNCURSES5_DEV_VERSION="6.2+20201114-2"
 # renovate: datasource=repology depName=debian_testing/libreadline-dev versioning=loose
-ARG LIBREADLINE_DEV_VERSION="8.1-1"
+ARG LIBREADLINE_DEV_VERSION="8.1-2"
 # renovate: datasource=repology depName=debian_testing/libsqlite3-dev versioning=loose
 ARG LIBSQLITE3_DEV_VERSION="3.34.1-3"
 # renovate: datasource=repology depName=debian_testing/libssl-dev versioning=loose
 ARG LIBSSL_DEV_VERSION="1.1.1k-1"
 # renovate: datasource=repology depName=debian_testing/libxml2-dev versioning=loose
-ARG LIBXML2_DEV_VERSION="2.9.10+dfsg-6.6"
+ARG LIBXML2_DEV_VERSION="2.9.10+dfsg-6.7"
 # renovate: datasource=repology depName=debian_testing/libxmlsec1-dev versioning=loose
-ARG LIBXMLSEC1_DEV_VERSION="1.2.31-1"
+ARG LIBXMLSEC1_DEV_VERSION="1.2.32-2"
 # renovate: datasource=repology depName=debian_testing/llvm versioning=loose
 ARG LLVM_VERSION="1:11.0-51+nmu4"
 # renovate: datasource=repology depName=debian_testing/parallel versioning=loose
@@ -82,7 +82,7 @@ ARG TK_DEV_VERSION="8.6.11+1"
 # renovate: datasource=repology depName=debian_testing/xz-utils versioning=loose
 ARG XZ_UTILS_VERSION="5.2.5-2"
 # renovate: datasource=repology depName=debian_testing/zlib1g-dev versioning=loose
-ARG ZLIB1G_DEV_VERSION="1:1.2.11.dfsg-2"
+ARG ZLIB1G_DEV_VERSION="1.1-8"
 # hadolint ignore=DL4006,SC2016,SC2039,SC2046
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
