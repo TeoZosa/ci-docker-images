@@ -19,7 +19,7 @@ ENV BASH_ENV="${ENV}"
 # renovate: datasource=repology depName=debian_stable/ca-certificates versioning=loose
 ARG CA_CERTIFICATES_VERSION="20210119"
 # renovate: datasource=repology depName=debian_stable/curl versioning=loose
-ARG CURL_VERSION="7.74.0-1.2"
+ARG CURL_VERSION="7.74.0-1.3"
 # renovate: datasource=repology depName=debian_stable/git versioning=loose
 ARG GIT_VERSION="1:2.30.2-1"
 # renovate: datasource=repology depName=debian_stable/git-lfs versioning=loose
@@ -70,7 +70,7 @@ ARG LIBSQLITE3_DEV_VERSION="3.34.1-3"
 # renovate: datasource=repology depName=debian_stable/libssl-dev versioning=loose
 ARG LIBSSL_DEV_VERSION="1.1.1k-1"
 # renovate: datasource=repology depName=debian_stable/libxml2-dev versioning=loose
-ARG LIBXML2_DEV_VERSION="2.9.10+dfsg-6.6"
+ARG LIBXML2_DEV_VERSION="2.9.10+dfsg-6.7"
 # renovate: datasource=repology depName=debian_stable/libxmlsec1-dev versioning=loose
 ARG LIBXMLSEC1_DEV_VERSION="1.2.31-1"
 # renovate: datasource=repology depName=debian_stable/llvm versioning=loose
@@ -82,7 +82,7 @@ ARG TK_DEV_VERSION="8.6.11+1"
 # renovate: datasource=repology depName=debian_stable/xz-utils versioning=loose
 ARG XZ_UTILS_VERSION="5.2.5-2"
 # renovate: datasource=repology depName=debian_stable/zlib1g-dev versioning=loose
-ARG ZLIB1G_DEV_VERSION="1:1.2.11.dfsg-2"
+ARG ZLIB1G_DEV_VERSION="1.1-8"
 # hadolint ignore=DL4006,SC2016,SC2039,SC2046
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
